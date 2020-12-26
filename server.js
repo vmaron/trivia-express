@@ -1,6 +1,8 @@
 const express = require('express');
+const path = require("path");
 require('dotenv').config();
 const app = express();
+
 // Update the headers to handle CORS
 // i.e., allow AJAX requests
 app.use(function(req, res, next) {
@@ -8,6 +10,9 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
+
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 
 app.get('/api/customers', (req, res) => {

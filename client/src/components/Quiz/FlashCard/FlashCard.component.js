@@ -7,7 +7,7 @@ import './FlashCard.css';
 class FlashCard extends Component {
   constructor(props) {
     super(props);
-    this.apiHostRoot = `http://localhost:5000/api/v1/questions/random/1`;
+    this.apiHost = `${process.env.REACT_APP_API_URL}/v1/questions/random/1`;
     this.state = {
       flipClass: '',
       questionData: ''
@@ -24,7 +24,7 @@ class FlashCard extends Component {
     const {notReady, nowReady} = this.props;
     notReady();
 
-    let newCardInfo = await axios.get(this.apiHostRoot);
+    let newCardInfo = await axios.get(this.apiHost);
     this.setState({
       flipClass: '',
       questionData: {...newCardInfo.data}
