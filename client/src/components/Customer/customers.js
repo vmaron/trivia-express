@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types'
-import {connect } from 'react-redux';
+import {connect} from 'react-redux';
 import {getCustomers} from '../../store/actions/customer'
 import './customers.css';
 
@@ -24,10 +24,10 @@ class Customers extends Component {
     return (
       <div>
         <h2>Customers</h2>
-        <ul>
-        {this.props.customers.map(customer =>
-          <li key={customer.id}>{customer.firstName} {customer.lastName}</li>
-        )}
+        <ul className='customers'>
+          {this.props.customers.map(customer =>
+            <li className='customers__item' key={customer.id}>{customer.firstName} {customer.lastName}</li>
+          )}
         </ul>
       </div>
     );
@@ -39,7 +39,7 @@ const mapStateToProps = (state) => ({
 })
 
 const dispatchToProps = (dispatch) => ({
-   getCustomers: () => dispatch(getCustomers())
+  getCustomers: () => dispatch(getCustomers())
 })
 
 export default connect(mapStateToProps, dispatchToProps)(Customers);

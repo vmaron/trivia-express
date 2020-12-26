@@ -1,0 +1,25 @@
+.spinner-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 348px;
+  padding-bottom: 65px;
+}
+.card-holder {
+  min-height: 400px;
+  perspective: 1200px;
+}
+
+.card {
+  height: 300px;
+  box-shadow: 0 0.125rem 1.25rem 0 rgba(0, 0, 0, 0.24);
+  border-radius: 0.3125rem;
+  transform-style: preserve-3d;
+  transition: 1s all;
+  cursor: pointer;
+}
+
+
+.flip,.tempFlip{
+  transform: rotateY(-180deg);
+}
