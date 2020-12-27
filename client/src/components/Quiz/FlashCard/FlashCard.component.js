@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import MultiCard from '../MultiCard/MultiCard.component';
 import axios from 'axios';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import './FlashCard.css';
+import Spinner from "../../Common/Spinner/Spinner";
 
 class FlashCard extends Component {
   constructor(props) {
@@ -48,11 +48,7 @@ class FlashCard extends Component {
     const newCardProps = {questionData};
 
     if (!flashCardDataLoaded) {
-      return (
-        <div className="spinner-wrapper">
-          <FontAwesomeIcon icon='spinner' size='6x' spin/>
-        </div>
-      )
+      return (<Spinner/>)
     }
 
     return (
