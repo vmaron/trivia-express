@@ -4,32 +4,14 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 import './App.css'
 import store from './store'
 import Spinner from "./components/Common/Spinner/Spinner";
-
 import preset from '@rebass/preset'
-import {ThemeProvider} from 'emotion-theming'
-// OR import { ThemeProvider } from 'styled-components'
+import {deep} from "@theme-ui/presets";
+import {ThemeProvider} from "theme-ui";
 import {Box, Flex, Link, Text} from 'rebass'
-// OR use 'rebass/styled-components'
 
 const theme = {
   ...preset,
-  breakpoints: ['40em', '52em', '64em'],
-  fontSizes: [
-    12, 14, 16, 20, 24, 32, 48, 64
-  ],
-  fontWeights: {
-    body: 400,
-    heading: 700,
-    bold: 700,
-  },
-  lineHeights: {
-    body: 1.5,
-    heading: 1.25,
-  },
-  shadows: {
-    small: '0 0 4px rgba(0, 0, 0, .125)',
-    large: '0 0 24px rgba(0, 0, 0, .125)'
-  }
+  ...deep
 }
 
 const FlashCards = lazy(() => import('./pages/FlashCards'));

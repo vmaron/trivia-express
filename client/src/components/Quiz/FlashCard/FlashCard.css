@@ -6,7 +6,7 @@
 .card {
   height: 350px;
   margin: 10px 0 10px;
-  box-shadow: 0 0.125rem 1.25rem 0 rgba(0, 0, 0, 0.24);
+  background-color: var(--theme-ui-colors-muted, hsla(230, 20%, 0%, 20%));
   border-radius: 0.3125rem;
   transform-style: preserve-3d;
   transition: 1s all;
