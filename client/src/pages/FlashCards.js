@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import FlashCard from "../components/Quiz/FlashCard/FlashCard.component";
+import './FlashCards.css';
 import {faDice, faDumbbell, faFileAlt, faFont, faSpinner} from '@fortawesome/free-solid-svg-icons';
 import {library} from '@fortawesome/fontawesome-svg-core';
 
@@ -31,10 +32,8 @@ class FlashCards extends Component {
     const flashCardProps = {cardRequestTime, flashCardDataLoaded};
 
     return (
-      <div className='align-items-center d-flex'>
-        <div className='container'>
-          <FlashCard {...flashCardProps} nowReady={this.nowReady} notReady={this.notReady}/>
-        </div>
+      <div className='container'>
+        <FlashCard {...flashCardProps} nowReady={this.nowReady} notReady={this.notReady}/>
       </div>
     );
   }

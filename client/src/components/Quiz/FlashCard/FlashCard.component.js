@@ -3,6 +3,7 @@ import MultiCard from '../MultiCard/MultiCard.component';
 import axios from 'axios';
 import './FlashCard.css';
 import Spinner from "../../Common/Spinner/Spinner";
+import {Button} from "rebass";
 
 class FlashCard extends Component {
   constructor(props) {
@@ -53,12 +54,12 @@ class FlashCard extends Component {
 
     return (
       <div className="flashcard-with-button">
-        <div className="row align-items-center card-holder">
-          <div onClick={this.flip} className={`col-sm-6 offset-sm-3 card mb-3 ${flipClass}`}>
+        <div className="card-holder">
+          <div onClick={this.flip} className={`card ${flipClass}`}>
             <MultiCard  {...newCardProps} />
           </div>
         </div>
-        <div onClick={this.newCard} className="btn btn-primary btn-lg">Next Question</div>
+        <Button onClick={this.newCard} variant='primary'>Next Question</Button>
       </div>
     );
   }

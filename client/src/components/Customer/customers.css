@@ -10,3 +10,6 @@ li.customers__item {
   line-height: 2rem;
   border-bottom: 1px dotted #777;
 }
+.container {
+  text-align: center;
+}

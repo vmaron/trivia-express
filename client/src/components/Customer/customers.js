@@ -22,7 +22,7 @@ class Customers extends Component {
   render() {
 
     return (
-      <div>
+      <div className='container'>
         <h2>Customers</h2>
         <ul className='customers'>
           {this.props.customers.map(customer =>
