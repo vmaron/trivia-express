@@ -1,8 +1,14 @@
 # trivia-express
 
-> NodeJS Express API and React client app for multiple choice trivia questions
+NodeJS Express API and React client app for multiple choice trivia questions
 
-https://triviaexpress.herokuapp.com
+## Demo
+
+Visit the deployed to Heroku app at [https://triviaexpress.herokuapp.com](https://triviaexpress.herokuapp.com)
+
+## Technologies Used
+
+Built with: Node.js, Express, React, Redux, Rebass, MySQL, Heroku
 
 ## Quick Start
 
@@ -38,3 +44,7 @@ Slav Maron
 ### License
 
 This project is licensed under the MIT License
+
+## Credits
+
+Dataset: [HQ Trivia questions](https://github.com/tblume1992/hq_trivia_dataset)
