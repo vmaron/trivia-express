@@ -1,6 +1,8 @@
 module.exports = app => {
-  const customers = require("../controllers/question.controller");
+  const controller = require("../controllers/question.controller");
 
-  app.get("/api/v1/questions", customers.findAll);
-  app.get("/api/v1/questions/random/:limit", customers.getRandom);
+  app.get("/api/v1/questions", controller.findAll);
+  app.get("/api/v1/questions/sequence", controller.getRandomSequence);
+  app.get("/api/v1/questions/random/:limit", controller.getRandom);
+  app.get("/api/v1/questions/:id", controller.getById);
 };

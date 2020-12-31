@@ -46,4 +46,30 @@ TriviaQuestion.getRandom = (limit, result) => {
   });
 };
 
+TriviaQuestion.getRandomSequence = (result) => {
+  sql.query("select id from trivia_qa order by rand()", (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+    result(null, res);
+  });
+};
+
+TriviaQuestion.getById = (id, result) => {
+  sql.query(`select id, question, correct_answer, answers
+    from trivia_qa
+    where id = ${id}`, (err, res) => {
+
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+
+    result(null, TriviaQuestion.mapRows(res));
+  });
+};
+
 module.exports = TriviaQuestion;

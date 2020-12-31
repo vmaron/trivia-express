@@ -10,9 +10,9 @@ const connection = mysql.createPool({
 });
 
 module.exports = {
-  query: (queryText,params,callback)=>{
-    return pool.query(queryText, params, callback);
+  connection,
+  query: (queryText, params, callback) => {
+    return connection.query(queryText, params, callback);
   }
 }
 
-module.exports = connection;

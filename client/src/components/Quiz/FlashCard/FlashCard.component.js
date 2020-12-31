@@ -4,11 +4,12 @@ import axios from 'axios';
 import './FlashCard.css';
 import Spinner from "../../Common/Spinner/Spinner";
 import {Button} from "rebass";
+import {connect} from "react-redux";
+import {NEXT_QUESTION} from "../../../store/actions/constants";
 
 class FlashCard extends Component {
   constructor(props) {
     super(props);
-    this.apiHost = `${process.env.REACT_APP_API_URL}/v1/questions/random/1`;
     this.state = {
       flipClass: '',
       questionData: ''
@@ -25,11 +26,12 @@ class FlashCard extends Component {
     const {notReady, nowReady} = this.props;
     notReady();
 
-    let newCardInfo = await axios.get(this.apiHost);
+    let newCardInfo = await axios.get(`/api/v1/questions/${this.props.currentQuestion.id}`);
     this.setState({
       flipClass: '',
       questionData: {...newCardInfo.data}
     }, () => nowReady());
+    this.props.getNextQuestion({...this.props.currentQuestion});
   }
 
   componentDidMount() {
@@ -65,4 +67,13 @@ class FlashCard extends Component {
   }
 }
 
-export default FlashCard;
+const mapStateToProps = (state) => ({
+  currentQuestion: state.quiz.currentQuestion
+})
+
+const dispatchToProps = (dispatch) => ({
+  getNextQuestion: (payload) => dispatch({type: NEXT_QUESTION, payload})
+})
+
+export default connect(mapStateToProps, dispatchToProps)(FlashCard);
+
