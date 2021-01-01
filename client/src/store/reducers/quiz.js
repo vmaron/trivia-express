@@ -18,7 +18,8 @@ const quizReducer = (state = initialState, action) => {
         questions: state.questions.map(q => q.id === action.payload.id ? {
           ...q,
           correct: action.payload.correct,
-          incorrect: action.payload.incorrect
+          incorrect: action.payload.incorrect,
+          response: action.payload.response
         } : q)
       };
     case INIT_QUIZ:

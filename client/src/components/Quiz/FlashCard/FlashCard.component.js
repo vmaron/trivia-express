@@ -6,6 +6,7 @@ import Spinner from "../../Common/Spinner/Spinner";
 import {Button} from "rebass";
 import {connect} from "react-redux";
 import {NEXT_QUESTION} from "../../../store/actions/constants";
+import PropTypes from "prop-types";
 
 class FlashCard extends Component {
   constructor(props) {
@@ -16,10 +17,20 @@ class FlashCard extends Component {
     };
   }
 
+  static propTypes = {
+    enableFlip: PropTypes.bool
+  }
+
+  static defaultProps = {
+    enableFlip: false
+  }
+
   flip = e => {
-    this.setState((prevState, props) => ({
-      flipClass: prevState.flipClass === '' ? 'flip' : ''
-    }));
+    if (this.props.enableFlip) {
+      this.setState((prevState, props) => ({
+        flipClass: prevState.flipClass === '' ? 'flip' : ''
+      }));
+    }
   }
 
   newCard = async () => {

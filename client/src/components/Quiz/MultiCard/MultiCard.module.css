@@ -32,7 +32,21 @@
 .option {
   display: block;
   text-align: left;
-  padding: 7px 5px;
+  padding: 7px 0;
   font-size: 16px;
   border-bottom: none;
 }
+
+.letter, .correct, .incorrect {
+  float: left;
+  width: 20px;
+}
+
+.correct {
+  color: green;
+}
+
+.incorrect {
+  color: red;
+}
+
