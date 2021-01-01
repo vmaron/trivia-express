@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux';
 import {getCustomers} from '../../store/actions/customer'
-import './customers.css';
+import styles from "./customers.module.css";
 
 class Customers extends Component {
 
@@ -22,11 +22,11 @@ class Customers extends Component {
   render() {
 
     return (
-      <div className='container'>
+      <div className={styles.container}>
         <h2>Customers</h2>
-        <ul className='customers'>
+        <ul className={styles.customers}>
           {this.props.customers.map(customer =>
-            <li className='customers__item' key={customer.id}>{customer.firstName} {customer.lastName}</li>
+            <li className={styles.customerItem} key={customer.id}>{customer.firstName} {customer.lastName}</li>
           )}
         </ul>
       </div>
