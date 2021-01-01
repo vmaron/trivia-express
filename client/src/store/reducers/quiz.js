@@ -1,4 +1,4 @@
-import {INIT_QUIZ, RESET_QUIZ, NEXT_QUESTION} from "../actions/constants";
+import {INIT_QUIZ, NEXT_QUESTION, RESET_QUIZ, SUBMIT_QUESTION} from "../actions/constants";
 
 const initialState = {
   questions: [],
@@ -8,15 +8,18 @@ const initialState = {
 const quizReducer = (state = initialState, action) => {
   switch (action.type) {
     case NEXT_QUESTION:
-      const questions = state.questions.map(question => question.id === action.payload.id ? {
-        ...question,
-        correct: action.payload.correct,
-        incorrect: action.payload.correct
-      } : question);
       return {
         ...state,
-        questions,
-        currentQuestion: action.payload.index < state.questions.length - 1 ? questions[action.payload.index + 1] : questions[0]
+        currentQuestion: action.payload.index < state.questions.length - 1 ? state.questions[action.payload.index + 1] : state.questions[0]
+      };
+    case SUBMIT_QUESTION:
+      return {
+        ...state,
+        questions: state.questions.map(q => q.id === action.payload.id ? {
+          ...q,
+          correct: action.payload.correct,
+          incorrect: action.payload.incorrect
+        } : q)
       };
     case INIT_QUIZ:
       if (action.payload && action.payload.length)

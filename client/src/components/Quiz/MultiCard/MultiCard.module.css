@@ -1,4 +1,4 @@
-.card-back, .card-front {
+.cardBack, .cardFront {
   position: absolute;
   top: 0;
   left: 0;
@@ -11,26 +11,27 @@
   text-align: center;
 }
 
-.card-back__question {
+.cardBackQuestion {
   font-size: 1.5rem;
   margin-left: 25px;
   margin-right: 25px;
   text-align: left;
 }
 
-.card-front {
+.cardFront {
   transform: rotateY(180deg);
 }
 
-ul.multi {
+.options {
   display: block;
   list-style-type: none;
   width: 100%;
   padding-top: 20px;
 }
 
-ul.multi li {
-  display: inline;
+.option {
+  display: block;
+  text-align: left;
   padding: 7px 5px;
   font-size: 16px;
   border-bottom: none;

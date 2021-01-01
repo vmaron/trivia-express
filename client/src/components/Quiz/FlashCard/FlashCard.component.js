@@ -31,6 +31,9 @@ class FlashCard extends Component {
       flipClass: '',
       questionData: {...newCardInfo.data}
     }, () => nowReady());
+  }
+
+  nextCard = async () => {
     this.props.getNextQuestion({...this.props.currentQuestion});
   }
 
@@ -39,8 +42,8 @@ class FlashCard extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const {cardRequestTime} = this.props;
-    if (prevProps.cardRequestTime !== cardRequestTime) {
+    const {cardRequestTime, currentQuestion} = this.props;
+    if (prevProps.cardRequestTime !== cardRequestTime || prevProps.currentQuestion.id !== currentQuestion.id) {
       this.newCard();
     }
   }
@@ -61,7 +64,7 @@ class FlashCard extends Component {
             <MultiCard  {...newCardProps} />
           </div>
         </div>
-        <Button onClick={this.newCard} variant='primary'>Next Question</Button>
+        <Button onClick={this.nextCard} variant='primary'>Next Question</Button>
       </div>
     );
   }
