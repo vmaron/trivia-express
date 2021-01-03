@@ -7,7 +7,7 @@ import Spinner from "./components/Common/Spinner/Spinner";
 import preset from '@rebass/preset'
 import {deep} from "@theme-ui/presets";
 import {ThemeProvider} from "theme-ui";
-import Navbar from "./components/Common/Navbar/Navbar";
+import Navbar from "./components/Common/Nav/Navbar";
 
 const theme = {
   ...preset,
@@ -15,6 +15,7 @@ const theme = {
   colors: {
     headerBkg: '#1c1e2e',
     header: 'white',
+    mobileMenuBkg: '#140a1f',
     ...deep.colors,
   },
   fonts: {
