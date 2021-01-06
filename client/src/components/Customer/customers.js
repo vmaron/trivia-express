@@ -20,7 +20,6 @@ class Customers extends Component {
   }
 
   render() {
-
     return (
       <div className={styles.container}>
         <h2>Customers</h2>

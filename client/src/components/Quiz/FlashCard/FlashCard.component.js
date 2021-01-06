@@ -1,12 +1,17 @@
 import React, {Component} from 'react';
 import MultiCard from '../MultiCard/MultiCard.component';
 import axios from 'axios';
-import './FlashCard.css';
+import classes from './FlashCard.module.css';
 import Spinner from "../../Common/Spinner/Spinner";
-import {Button} from "rebass";
+import {Button, Flex} from "rebass";
 import {connect} from "react-redux";
-import {NEXT_QUESTION} from "../../../store/actions/constants";
+import {NEXT_QUESTION, PREV_QUESTION} from "../../../store/actions/constants";
 import PropTypes from "prop-types";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faArrowLeft, faArrowRight} from '@fortawesome/free-solid-svg-icons';
+import {library} from '@fortawesome/fontawesome-svg-core'
+
+library.add([faArrowLeft, faArrowRight]);
 
 class FlashCard extends Component {
   constructor(props) {
@@ -44,6 +49,10 @@ class FlashCard extends Component {
     }, () => nowReady());
   }
 
+  prevCard = async () => {
+    this.props.getPrevQuestion({...this.props.currentQuestion});
+  }
+
   nextCard = async () => {
     this.props.getNextQuestion({...this.props.currentQuestion});
   }
@@ -69,13 +78,22 @@ class FlashCard extends Component {
     }
 
     return (
-      <div className="flashcard-with-button">
-        <div className="card-holder">
-          <div onClick={this.flip} className={`card ${flipClass}`}>
+      <div className={classes.flashcardWithButton}>
+        <div className={classes.cardHolder}>
+          <div onClick={this.flip} className={`${classes.card} ${flipClass}`}>
             <MultiCard  {...newCardProps} />
           </div>
         </div>
-        <Button onClick={this.nextCard} variant='primary'>Next Question</Button>
+        <Flex>
+          <div className={classes.previous}>
+            <Button onClick={this.prevCard} variant='primary' className={classes.clickable}>
+              <FontAwesomeIcon icon="arrow-left"/> Previous</Button>
+          </div>
+          <div className={classes.next}>
+            <Button onClick={this.nextCard} variant='primary' className={classes.clickable}>
+              Next <FontAwesomeIcon icon="arrow-right"/></Button>
+          </div>
+        </Flex>
       </div>
     );
   }
@@ -86,7 +104,8 @@ const mapStateToProps = (state) => ({
 })
 
 const dispatchToProps = (dispatch) => ({
-  getNextQuestion: (payload) => dispatch({type: NEXT_QUESTION, payload})
+  getPrevQuestion: (payload) => dispatch({type: PREV_QUESTION, payload}),
+  getNextQuestion: (payload) => dispatch({type: NEXT_QUESTION, payload}),
 })
 
 export default connect(mapStateToProps, dispatchToProps)(FlashCard);
