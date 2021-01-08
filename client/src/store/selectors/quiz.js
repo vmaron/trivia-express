@@ -1,20 +1,30 @@
-import { createSelector } from 'reselect'
+import {createSelector} from 'reselect'
 
-const getQuestionsSelector = state => state.questions;
+const getQuizSelector = state => {
+  return state.quiz;
+};
 
-const getTotalCorrectSelector = createSelector(
+const getQuestionsSelector = state => {
+  return state.quiz.questions;
+};
+
+export const getTotalCorrectSelector = createSelector(
   getQuestionsSelector,
-  items => items.filter(x => x.correct).length
+  (questions) => {
+    return questions.filter(x => x.correct).length;
+  }
 )
 
-const getTotalIncorrectSelector = createSelector(
+export const getTotalIncorrectSelector = createSelector(
   getQuestionsSelector,
-  items => items.filter(x => !x.incorrect).length
+  (questions) => {
+    return questions.filter(x => x.incorrect).length;
+  }
 )
 
-const getRemainingSelector = createSelector(
-  getQuestionsSelector,
-  items => state.currentQuestion ? items.length - state.currentQuestion.index : items.length
+export const getTotalRemainingSelector = createSelector(
+  getQuizSelector,
+  (quiz) => {
+    return quiz.currentQuestion ? quiz.questions.length - quiz.currentQuestion.index : quiz.questions.length;
+  }
 )
-
-

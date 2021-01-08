@@ -3,13 +3,18 @@ import MultiCard from '../MultiCard/MultiCard.component';
 import axios from 'axios';
 import classes from './FlashCard.module.css';
 import Spinner from "../../Common/Spinner/Spinner";
-import {Button, Flex} from "rebass";
+import {Button, Flex, Text} from "rebass";
 import {connect} from "react-redux";
 import {NEXT_QUESTION, PREV_QUESTION} from "../../../store/actions/constants";
 import PropTypes from "prop-types";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowLeft, faArrowRight} from '@fortawesome/free-solid-svg-icons';
 import {library} from '@fortawesome/fontawesome-svg-core'
+import {
+  getTotalCorrectSelector,
+  getTotalIncorrectSelector,
+  getTotalRemainingSelector
+} from "../../../store/selectors/quiz";
 
 library.add([faArrowLeft, faArrowRight]);
 
@@ -79,6 +84,32 @@ class FlashCard extends Component {
 
     return (
       <div className={classes.flashcardWithButton}>
+        <Flex flexWrap='wrap' justifyContent='space-between'>
+          <div>
+          <Text
+            fontSize={[ 2, 3, 4 ]}
+            fontWeight='bold'
+            >
+            Remaining: {this.props.totalRemaining}
+          </Text>
+          </div>
+          <div>
+            <Text
+              fontSize={[ 2, 3, 4 ]}
+              fontWeight='bold'
+              color='green'>
+              Correct: {this.props.totalCorrect}
+            </Text>
+          </div>
+          <div>
+            <Text
+              fontSize={[ 2, 3, 4 ]}
+              fontWeight='bold'
+              color='red'>
+              Incorrect: {this.props.totalIncorrect}
+            </Text>
+          </div>
+        </Flex>
         <div className={classes.cardHolder}>
           <div onClick={this.flip} className={`${classes.card} ${flipClass}`}>
             <MultiCard  {...newCardProps} />
@@ -99,9 +130,15 @@ class FlashCard extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  currentQuestion: state.quiz.currentQuestion
-})
+
+const mapStateToProps = state => {
+  return {
+    currentQuestion: state.quiz.currentQuestion,
+    totalCorrect: getTotalCorrectSelector(state),
+    totalIncorrect: getTotalIncorrectSelector(state),
+    totalRemaining: getTotalRemainingSelector(state)
+  }
+}
 
 const dispatchToProps = (dispatch) => ({
   getPrevQuestion: (payload) => dispatch({type: PREV_QUESTION, payload}),

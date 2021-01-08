@@ -54,7 +54,7 @@ class MultiCard extends React.Component {
         ...this.props.currentQuestion,
         correct,
         incorrect: !correct,
-        response: answerLetter
+        response: letter
       });
       this.setState({response: letter})
     };
