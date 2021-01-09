@@ -8,7 +8,7 @@ import {connect} from "react-redux";
 import {NEXT_QUESTION, PREV_QUESTION} from "../../../store/actions/constants";
 import PropTypes from "prop-types";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faArrowLeft, faArrowRight} from '@fortawesome/free-solid-svg-icons';
+import {faArrowLeft, faArrowRight, faEye} from '@fortawesome/free-solid-svg-icons';
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {
   getTotalCorrectSelector,
@@ -16,7 +16,7 @@ import {
   getTotalRemainingSelector
 } from "../../../store/selectors/quiz";
 
-library.add([faArrowLeft, faArrowRight]);
+library.add([faArrowLeft, faArrowRight, faEye]);
 
 class FlashCard extends Component {
   constructor(props) {
@@ -36,10 +36,14 @@ class FlashCard extends Component {
   }
 
   flip = e => {
-    if (this.props.enableFlip) {
-      this.setState((prevState, props) => ({
-        flipClass: prevState.flipClass === '' ? 'flip' : ''
-      }));
+    this.setState((prevState, props) => ({
+      flipClass: prevState.flipClass === '' ? 'flip' : ''
+    }));
+  }
+
+  flipBack = e => {
+    if (this.state.flipClass === 'flip') {
+      this.flip(e);
     }
   }
 
@@ -86,16 +90,16 @@ class FlashCard extends Component {
       <div className={classes.flashcardWithButton}>
         <Flex flexWrap='wrap' justifyContent='space-between'>
           <div>
-          <Text
-            fontSize={[ 2, 3, 4 ]}
-            fontWeight='bold'
+            <Text
+              fontSize={[2, 3, 4]}
+              fontWeight='bold'
             >
-            Remaining: {this.props.totalRemaining}
-          </Text>
+              Remaining: {this.props.totalRemaining}
+            </Text>
           </div>
           <div>
             <Text
-              fontSize={[ 2, 3, 4 ]}
+              fontSize={[2, 3, 4]}
               fontWeight='bold'
               color='green'>
               Correct: {this.props.totalCorrect}
@@ -103,7 +107,7 @@ class FlashCard extends Component {
           </div>
           <div>
             <Text
-              fontSize={[ 2, 3, 4 ]}
+              fontSize={[2, 3, 4]}
               fontWeight='bold'
               color='red'>
               Incorrect: {this.props.totalIncorrect}
@@ -111,11 +115,16 @@ class FlashCard extends Component {
           </div>
         </Flex>
         <div className={classes.cardHolder}>
-          <div onClick={this.flip} className={`${classes.card} ${flipClass}`}>
+          {this.props.enableFlip && (<Flex justifyContent='flex-end'>
+            <div className={classes.peek}>
+              <FontAwesomeIcon icon="eye" size='lg' onClick={e => this.flip(e)}/>
+            </div>
+          </Flex>)}
+          <div onClick={this.flipBack} className={`${classes.card} ${flipClass}`}>
             <MultiCard  {...newCardProps} />
           </div>
         </div>
-        <Flex>
+        <Flex style={{marginTop: '30px'}}>
           <div className={classes.previous}>
             <Button onClick={this.prevCard} variant='primary' className={classes.clickable}>
               <FontAwesomeIcon icon="arrow-left"/> Previous</Button>

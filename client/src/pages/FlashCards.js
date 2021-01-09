@@ -53,7 +53,7 @@ class FlashCards extends Component {
     return (
       <div className={classes.container}>
         {this.props.currentQuestion && (
-          <FlashCard {...flashCardProps} nowReady={this.nowReady} notReady={this.notReady}/>
+          <FlashCard {...flashCardProps} nowReady={this.nowReady} notReady={this.notReady} enableFlip={true}/>
         )}
       </div>
     );

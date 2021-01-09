@@ -4,9 +4,12 @@ const getQuizSelector = state => {
   return state.quiz;
 };
 
-const getQuestionsSelector = state => {
-  return state.quiz.questions;
-};
+export const getQuestionsSelector = createSelector(
+  getQuizSelector,
+  (quiz) => {
+    return quiz.questions;
+  }
+)
 
 export const getTotalCorrectSelector = createSelector(
   getQuestionsSelector,
@@ -23,8 +26,8 @@ export const getTotalIncorrectSelector = createSelector(
 )
 
 export const getTotalRemainingSelector = createSelector(
-  getQuizSelector,
-  (quiz) => {
-    return quiz.currentQuestion ? quiz.questions.length - quiz.currentQuestion.index : quiz.questions.length;
+  getQuestionsSelector,
+  (questions) => {
+    return questions.length - questions.filter(x => x.correct || x.incorrect).length;
   }
 )

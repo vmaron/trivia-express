@@ -37,3 +37,8 @@
   cursor: pointer;
   width: 125px;
 }
+
+.peek {
+  margin: 10px 15px 10px;
+  cursor: pointer;
+}
