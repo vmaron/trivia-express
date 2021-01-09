@@ -1,9 +1,12 @@
 import React from 'react'
-import {object} from 'prop-types';
 import Burger from './Burger';
 import {Box, Flex, Text} from "rebass";
+import {useThemeUI} from 'theme-ui';
 
-const Navbar = ({theme}) => {
+const Navbar = () => {
+  const context = useThemeUI();
+  const {theme} = context;
+
   return (
     <Flex
       style={{padding: '0 20px'}}
@@ -13,13 +16,9 @@ const Navbar = ({theme}) => {
       alignItems='center'>
       <Text p={2} fontWeight='bold'>Trivia Express</Text>
       <Box mx='auto'/>
-      <Burger theme={theme}/>
+      <Burger/>
     </Flex>
   )
-}
-
-Navbar.propTypes = {
-  theme: object.isRequired
 }
 
 export default Navbar;

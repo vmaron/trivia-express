@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import {Link as RebassLink} from "rebass";
 import {Link as RouterLink} from "react-router-dom";
-import {bool, func, object} from "prop-types";
+import {bool, func} from "prop-types";
+import {useThemeUI} from "theme-ui";
 
 const Nav = styled.div`
   list-style: none;
@@ -31,7 +32,10 @@ const Nav = styled.div`
   }
 `;
 
-const RightNav = ({theme, open, isMobile, onLinkClick = f => f}) => {
+const RightNav = ({open, isMobile, onLinkClick = f => f}) => {
+  const context = useThemeUI()
+  const {theme} = context;
+
   return (
     <Nav open={open} isMobile={isMobile} theme={theme}>
       <RebassLink variant='nav' as={RouterLink} to="/" onClick={() => onLinkClick()}>Flash Cards</RebassLink>
@@ -45,8 +49,7 @@ const RightNav = ({theme, open, isMobile, onLinkClick = f => f}) => {
 RightNav.propTypes = {
   open: bool.isRequired,
   isMobile: bool.isRequired,
-  onLinkClick: func.isRequired,
-  theme: object.isRequired
+  onLinkClick: func.isRequired
 }
 
 export default RightNav

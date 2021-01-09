@@ -2,8 +2,6 @@ import React, {useState} from "react";
 import styled from 'styled-components';
 import RightNav from './RightNav';
 import {useWindowSize} from "../../../hooks/useWindowSize";
-import {object} from "prop-types";
-
 
 const StyledBurger = styled.div`
   width: 2rem;
@@ -42,7 +40,7 @@ const StyledBurger = styled.div`
   }
 `;
 
-const Burger = ({theme}) => {
+const Burger = () => {
   const [open, setOpen] = useState(false);
   const [width] = useWindowSize();
 
@@ -54,13 +52,9 @@ const Burger = ({theme}) => {
         <div/>
         <div/>
       </StyledBurger>
-      <RightNav theme={theme} open={open} isMobile={mobileLayout} onLinkClick={() => setOpen(false)}/>
+      <RightNav open={open} isMobile={mobileLayout} onLinkClick={() => setOpen(false)}/>
     </>
   )
-}
-
-Burger.propTypes = {
-  theme: object.isRequired
 }
 
 export default Burger

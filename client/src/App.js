@@ -5,18 +5,18 @@ import './App.css'
 import store from './store'
 import Spinner from "./components/Common/Spinner/Spinner";
 import preset from '@rebass/preset'
-import {deep} from "@theme-ui/presets";
+import {swiss} from "@theme-ui/presets";
 import {ThemeProvider} from "theme-ui";
 import Navbar from "./components/Common/Nav/Navbar";
 
 const theme = {
   ...preset,
-  ...deep,
+  ...swiss,
   colors: {
     headerBkg: '#1c1e2e',
     header: 'white',
     mobileMenuBkg: '#140a1f',
-    ...deep.colors,
+    ...swiss.colors,
   },
   fonts: {
     ...preset.fonts,
@@ -35,7 +35,7 @@ class App extends Component {
         <Provider store={store}>
           <Router>
             <div className="App">
-              <Navbar theme={theme}/>
+              <Navbar/>
 
               <Suspense fallback={<Spinner/>}>
                 <Route exact path='/' component={FlashCards}/>
