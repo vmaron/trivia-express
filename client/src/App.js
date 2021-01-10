@@ -13,9 +13,9 @@ const theme = {
   ...preset,
   ...swiss,
   colors: {
-    headerBkg: '#1c1e2e',
+    headerBkg: 'rgb(37, 47, 63)',
     header: 'white',
-    mobileMenuBkg: '#140a1f',
+    mobileMenuBkg: 'rgb(37, 47, 63)',
     ...swiss.colors,
   },
   fonts: {
@@ -34,14 +34,27 @@ class App extends Component {
       <ThemeProvider theme={theme}>
         <Provider store={store}>
           <Router>
-            <div className="App">
+            <div className="layout">
               <Navbar/>
-
-              <Suspense fallback={<Spinner/>}>
-                <Route exact path='/' component={FlashCards}/>
-                <Route exact path='/redux' component={Customers}/>
-              </Suspense>
-
+              <div className="layout-body">
+                <main className="layout-content">
+                  <Suspense fallback={<Spinner/>}>
+                    <Route exact path='/' component={FlashCards}/>
+                    <Route exact path='/redux' component={Customers}/>
+                  </Suspense>
+                </main>
+                <nav className="layout-nav">
+                  Navigation
+                </nav>
+                <aside className="layout-ads">
+                  Advertisements
+                </aside>
+              </div>
+              <footer className="layout-footer">
+                <div className="footer">
+                  Footer
+                </div>
+              </footer>
             </div>
           </Router>
         </Provider>

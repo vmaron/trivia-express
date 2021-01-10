@@ -9,12 +9,12 @@ const Navbar = () => {
 
   return (
     <Flex
-      style={{padding: '0 20px'}}
+      style={{padding: '0px 20px 0 5px'}}
       height='75px'
       color={theme.colors.header}
       bg={theme.colors.headerBkg}
       alignItems='center'>
-      <Text p={2} fontWeight='bold'>Trivia Express</Text>
+      <Text p={4} fontWeight='bold'>Trivia Express</Text>
       <Box mx='auto'/>
       <Burger/>
     </Flex>

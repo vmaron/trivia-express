@@ -1,4 +1,62 @@
-.App {
-
+:root {
+  --space: 1.5em;
+  --space-lg: 2em;
 }
 
+.layout,
+.layout-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.layout-nav,
+.layout-ads {
+  padding: 1em;
+  border-radius: 3px;
+  background: rgba(147, 128, 108, 0.1);
+}
+
+.layout-nav {
+  order: -1;
+  display: none;
+}
+
+.layout-ads {
+  margin: 1rem;
+}
+
+@media (min-width: 768px) {
+  .layout-body {
+    flex-direction: row;
+    flex: 1;
+  }
+
+  .layout-content {
+    flex: 1;
+  }
+
+  .layout-nav, .layout-ads {
+    /* 12em is the width of the columns */
+    flex: 0 0 12em;
+    background: rgba(147, 128, 108, 0.1);
+    display: block;
+    margin: 0;
+  }
+}
+
+.layout-footer {
+  -webkit-box-flex: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.footer {
+  padding: 1.5rem;
+  background: rgb(37, 47, 63);
+  color: #ffffff;
+  font-size: .85em;
+  overflow-x: hidden;
+  text-align: center;
+}
