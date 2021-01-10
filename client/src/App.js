@@ -7,7 +7,7 @@ import Spinner from "./components/Common/Spinner/Spinner";
 import preset from '@rebass/preset'
 import {swiss} from "@theme-ui/presets";
 import {ThemeProvider} from "theme-ui";
-import Navbar from "./components/Common/Nav/Navbar";
+import Layout from "./layouts/Layout";
 
 const theme = {
   ...preset,
@@ -34,28 +34,12 @@ class App extends Component {
       <ThemeProvider theme={theme}>
         <Provider store={store}>
           <Router>
-            <div className="layout">
-              <Navbar/>
-              <div className="layout-body">
-                <main className="layout-content">
-                  <Suspense fallback={<Spinner/>}>
-                    <Route exact path='/' component={FlashCards}/>
-                    <Route exact path='/redux' component={Customers}/>
-                  </Suspense>
-                </main>
-                <nav className="layout-nav">
-                  Navigation
-                </nav>
-                <aside className="layout-ads">
-                  Advertisements
-                </aside>
-              </div>
-              <div className="layout-footer">
-                <div className="footer">
-                  Footer
-                </div>
-              </div>
-            </div>
+            <Layout>
+              <Suspense fallback={<Spinner/>}>
+                <Route exact path='/' component={FlashCards}/>
+                <Route exact path='/redux' component={Customers}/>
+              </Suspense>
+            </Layout>
           </Router>
         </Provider>
       </ThemeProvider>

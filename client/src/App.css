@@ -1,6 +1,7 @@
 :root {
   --space: 1.5em;
   --space-lg: 2em;
+  --space-xlg: 4em;
 }
 
 .layout,
@@ -41,6 +42,7 @@
   .layout-content {
     flex: 1;
     margin-top: var(--space-lg);
+    margin-bottom: var(--space-xlg);
     padding: 0 var(--space-lg);
   }
 
@@ -67,5 +69,7 @@
   font-size: .85em;
   overflow-x: hidden;
   text-align: center;
-  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
