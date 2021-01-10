@@ -50,11 +50,11 @@ class App extends Component {
                   Advertisements
                 </aside>
               </div>
-              <footer className="layout-footer">
+              <div className="layout-footer">
                 <div className="footer">
                   Footer
                 </div>
-              </footer>
+              </div>
             </div>
           </Router>
         </Provider>
