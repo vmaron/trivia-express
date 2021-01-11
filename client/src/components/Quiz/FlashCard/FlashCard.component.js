@@ -3,18 +3,13 @@ import MultiCard from '../MultiCard/MultiCard.component';
 import axios from 'axios';
 import classes from './FlashCard.module.css';
 import Spinner from "../../Common/Spinner/Spinner";
-import {Button, Flex, Text} from "rebass";
+import {Button, Flex} from "rebass";
 import {connect} from "react-redux";
 import {NEXT_QUESTION, PREV_QUESTION} from "../../../store/actions/constants";
 import PropTypes from "prop-types";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowLeft, faArrowRight, faEye} from '@fortawesome/free-solid-svg-icons';
 import {library} from '@fortawesome/fontawesome-svg-core'
-import {
-  getTotalCorrectSelector,
-  getTotalIncorrectSelector,
-  getTotalRemainingSelector
-} from "../../../store/selectors/quiz";
 
 library.add([faArrowLeft, faArrowRight, faEye]);
 
@@ -88,36 +83,10 @@ class FlashCard extends Component {
 
     return (
       <div className={classes.flashcardWithButton}>
-        <Flex flexWrap='wrap' justifyContent='space-between'>
-          <div>
-            <Text
-              fontSize={[2, 3, 4]}
-              fontWeight='bold'
-            >
-              Remaining: {this.props.totalRemaining}
-            </Text>
-          </div>
-          <div>
-            <Text
-              fontSize={[2, 3, 4]}
-              fontWeight='bold'
-              color='green'>
-              Correct: {this.props.totalCorrect}
-            </Text>
-          </div>
-          <div>
-            <Text
-              fontSize={[2, 3, 4]}
-              fontWeight='bold'
-              color='red'>
-              Incorrect: {this.props.totalIncorrect}
-            </Text>
-          </div>
-        </Flex>
         <div className={classes.cardHolder}>
           {this.props.enableFlip && (<Flex justifyContent='flex-end'>
             <div className={classes.peek}>
-              <FontAwesomeIcon icon="eye" size='lg' onClick={e => this.flip(e)}/>
+              <FontAwesomeIcon icon="eye" size='lg' color='var(--theme-ui-colors-primary,hsl(10,80%,50%))' onClick={e => this.flip(e)}/>
             </div>
           </Flex>)}
           <div onClick={this.flipBack} className={`${classes.card} ${flipClass}`}>
@@ -126,11 +95,11 @@ class FlashCard extends Component {
         </div>
         <Flex style={{marginTop: '30px'}}>
           <div className={classes.previous}>
-            <Button onClick={this.prevCard} variant='primary' className={classes.clickable}>
+            <Button onClick={this.prevCard} variant='outline' className={classes.clickable}>
               <FontAwesomeIcon icon="arrow-left"/> Previous</Button>
           </div>
           <div className={classes.next}>
-            <Button onClick={this.nextCard} variant='primary' className={classes.clickable}>
+            <Button onClick={this.nextCard} variant='outline' className={classes.clickable}>
               Next <FontAwesomeIcon icon="arrow-right"/></Button>
           </div>
         </Flex>
@@ -142,10 +111,7 @@ class FlashCard extends Component {
 
 const mapStateToProps = state => {
   return {
-    currentQuestion: state.quiz.currentQuestion,
-    totalCorrect: getTotalCorrectSelector(state),
-    totalIncorrect: getTotalIncorrectSelector(state),
-    totalRemaining: getTotalRemainingSelector(state)
+    currentQuestion: state.quiz.currentQuestion
   }
 }
 

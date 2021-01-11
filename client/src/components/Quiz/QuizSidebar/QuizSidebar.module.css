@@ -1,0 +1,14 @@
+.count {
+  padding: 5px 0 5px 0;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  font-size: 0.9rem;
+}
+
+@media (min-width: 768px) {
+  .count {
+    padding: 15px 0 15px 0;
+    font-size: 1rem;
+  }
+}
