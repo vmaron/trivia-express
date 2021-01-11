@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import FlashCard from "../components/Quiz/FlashCard/FlashCard.component";
+import FlashCard from "../FlashCard/FlashCard.component";
 import {faDice, faDumbbell, faFileAlt, faFont, faSpinner} from '@fortawesome/free-solid-svg-icons';
-import {getNewQuiz} from '../store/actions/quiz'
+import {getNewQuiz} from '../../../store/actions/quiz'
 import {library} from '@fortawesome/fontawesome-svg-core';
 import PropTypes from "prop-types";
 import {connect} from "react-redux";

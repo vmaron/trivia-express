@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux';
 import {getCustomers} from '../../store/actions/customer'
-import styles from "./customers.module.css";
+import styles from "./CustomersList.module.css";
 
-class Customers extends Component {
+class CustomersList extends Component {
 
   static propTypes = {
     getCustomers: PropTypes.func.isRequired,
@@ -41,4 +41,4 @@ const dispatchToProps = (dispatch) => ({
   getCustomers: () => dispatch(getCustomers())
 })
 
-export default connect(mapStateToProps, dispatchToProps)(Customers);
+export default connect(mapStateToProps, dispatchToProps)(CustomersList);

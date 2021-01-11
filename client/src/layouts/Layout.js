@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from "../components/Common/Nav/Navbar";
 
-const Layout = ({children}) => {
+const Layout = (props) => {
   return (
     <>
       <header>
@@ -10,14 +10,14 @@ const Layout = ({children}) => {
       <main className="layout">
         <div className="layout-body">
           <main className="layout-content">
-            {children}
+            {props.center}
           </main>
-          <nav className="layout-nav">
-            Navigation
-          </nav>
-          <aside className="layout-ads">
-            Advertisements
-          </aside>
+          {props.left && (<nav className="layout-nav">
+            {props.left}
+          </nav>)}
+          {props.right && (<aside className="layout-ads">
+            {props.right}
+          </aside>)}
         </div>
       </main>
       <footer className="layout-footer">

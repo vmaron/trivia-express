@@ -7,7 +7,6 @@ import Spinner from "./components/Common/Spinner/Spinner";
 import preset from '@rebass/preset'
 import {swiss} from "@theme-ui/presets";
 import {ThemeProvider} from "theme-ui";
-import Layout from "./layouts/Layout";
 
 const theme = {
   ...preset,
@@ -25,8 +24,8 @@ const theme = {
   },
 }
 
-const FlashCards = lazy(() => import('./pages/FlashCards'));
-const Customers = lazy(() => import('./components/Customer/customers'));
+const Quiz = lazy(() => import('./pages/Quiz'));
+const Customers = lazy(() => import('./pages/Customers'));
 
 class App extends Component {
   render() {
@@ -34,12 +33,10 @@ class App extends Component {
       <ThemeProvider theme={theme}>
         <Provider store={store}>
           <Router>
-            <Layout>
-              <Suspense fallback={<Spinner/>}>
-                <Route exact path='/' component={FlashCards}/>
-                <Route exact path='/redux' component={Customers}/>
-              </Suspense>
-            </Layout>
+            <Suspense fallback={<Spinner/>}>
+              <Route exact path='/' component={Quiz}/>
+              <Route exact path='/redux' component={Customers}/>
+            </Suspense>
           </Router>
         </Provider>
       </ThemeProvider>
