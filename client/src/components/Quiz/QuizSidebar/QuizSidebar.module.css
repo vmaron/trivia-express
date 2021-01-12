@@ -1,3 +1,7 @@
+.sidebar {
+  font-weight: 600;
+}
+
 .count {
   padding: 5px 0 5px 0;
   justify-content: space-between;

@@ -12,9 +12,10 @@ const theme = {
   ...preset,
   ...swiss,
   colors: {
-    headerBkg: 'rgb(37, 47, 63)',
+    background: 'rgb(241 244 248)',
+    headerBkg: 'rgb(76, 86, 106)',
     header: 'white',
-    mobileMenuBkg: 'rgb(37, 47, 63)',
+    mobileMenuBkg: 'rgb(76, 86, 106)',
     ...swiss.colors,
   },
   fonts: {

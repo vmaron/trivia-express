@@ -86,7 +86,7 @@ class FlashCard extends Component {
         <div className={classes.cardHolder}>
           {this.props.enableFlip && (<Flex justifyContent='flex-end'>
             <div className={classes.peek}>
-              <FontAwesomeIcon icon="eye" size='lg' color='var(--theme-ui-colors-primary,hsl(10,80%,50%))' onClick={e => this.flip(e)}/>
+              <FontAwesomeIcon icon="eye" size='2x' color='var(--theme-ui-colors-primary,hsl(10,80%,50%))' onClick={e => this.flip(e)}/>
             </div>
           </Flex>)}
           <div onClick={this.flipBack} className={`${classes.card} ${flipClass}`}>
@@ -95,11 +95,11 @@ class FlashCard extends Component {
         </div>
         <Flex style={{marginTop: '30px'}}>
           <div className={classes.previous}>
-            <Button onClick={this.prevCard} variant='outline' className={classes.clickable}>
+            <Button onClick={this.prevCard} variant='primary' className={classes.clickable}>
               <FontAwesomeIcon icon="arrow-left"/> Previous</Button>
           </div>
           <div className={classes.next}>
-            <Button onClick={this.nextCard} variant='outline' className={classes.clickable}>
+            <Button onClick={this.nextCard} variant='primary' className={classes.clickable}>
               Next <FontAwesomeIcon icon="arrow-right"/></Button>
           </div>
         </Flex>

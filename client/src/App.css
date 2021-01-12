@@ -15,11 +15,12 @@
 .layout-ads {
   padding: 1em;
   border-radius: 3px;
-  background: rgba(147, 128, 108, 0.1);
 }
 
 .layout-nav {
   order: -1;
+  box-shadow: 0 0.25rem 1.25rem rgba(0,0,0,.08);
+  background-color: white;
 }
 
 .layout-content {
@@ -46,10 +47,10 @@
 
   .layout-nav, .layout-ads {
     /* 12em is the width of the columns */
-    flex: 0 0 12em;
-    background: rgba(147, 128, 108, 0.1);
+    flex: 0 0 17em;
     display: block;
     margin: 0;
+    border-radius: 0;
   }
 }
 
@@ -62,7 +63,7 @@
 
 .footer {
   padding: 1.5rem;
-  background: rgb(37, 47, 63);
+  background: rgb(76, 86, 106);
   color: #ffffff;
   font-size: .85em;
   overflow-x: hidden;

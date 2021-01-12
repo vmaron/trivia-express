@@ -9,7 +9,7 @@ import {Box, Flex} from "rebass";
 import classes from './QuizSidebar.module.css';
 
 const QuizSidebar = (props) => (
-  <Flex flexDirection='column'>
+  <Flex flexDirection='column' className={classes.sidebar}>
     <div className={classes.count}>
       <div> Remaining</div>
       <Box
