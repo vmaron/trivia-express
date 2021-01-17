@@ -66,7 +66,7 @@ const mapStateToProps = (state) => ({
 })
 
 const dispatchToProps = (dispatch) => ({
-  getNewQuiz: () => dispatch(getNewQuiz())
+  getNewQuiz: () => dispatch(getNewQuiz(1))
 })
 
 export default connect(mapStateToProps, dispatchToProps)(FlashCards);
