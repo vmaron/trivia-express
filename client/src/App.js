@@ -12,11 +12,11 @@ const theme = {
   ...preset,
   ...swiss,
   colors: {
-    background: 'rgb(241 244 248)',
+    ...swiss.colors,
+    background: 'rgb(241, 244, 248)',
     headerBkg: 'rgb(76, 86, 106)',
     header: 'white',
     mobileMenuBkg: 'rgb(76, 86, 106)',
-    ...swiss.colors,
   },
   fonts: {
     ...preset.fonts,
@@ -26,6 +26,7 @@ const theme = {
 }
 
 const Quiz = lazy(() => import('./pages/Quiz'));
+const Category = lazy(() => import('./pages/Category'));
 const Customers = lazy(() => import('./pages/Customers'));
 
 class App extends Component {
@@ -35,7 +36,8 @@ class App extends Component {
         <Provider store={store}>
           <Router>
             <Suspense fallback={<Spinner/>}>
-              <Route exact path='/' component={Quiz}/>
+              <Route exact path='/' component={Category}/>
+              <Route exact path='/quizzes/:id' component={Quiz}/>
               <Route exact path='/redux' component={Customers}/>
             </Suspense>
           </Router>

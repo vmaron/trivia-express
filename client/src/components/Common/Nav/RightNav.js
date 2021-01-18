@@ -38,8 +38,8 @@ const RightNav = ({open, isMobile, onLinkClick = f => f}) => {
 
   return (
     <Nav open={open} isMobile={isMobile} theme={theme}>
-      <RebassLink variant='nav' as={RouterLink} to="/" onClick={() => onLinkClick()}>Flash Cards</RebassLink>
-      <RebassLink variant='nav' as={RouterLink} to='/redux' onClick={() => onLinkClick()}>Redux Test</RebassLink>
+      <RebassLink variant='nav' as={RouterLink} to="/" onClick={() => onLinkClick()}>Home</RebassLink>
+     {/* <RebassLink variant='nav' as={RouterLink} to='/redux' onClick={() => onLinkClick()}>Redux Test</RebassLink>*/}
       <RebassLink variant='nav' as={RouterLink} to="/" onClick={() => onLinkClick()}>Sign In</RebassLink>
       <RebassLink variant='nav' as={RouterLink} to="/" onClick={() => onLinkClick()}>Sign Up</RebassLink>
     </Nav>
