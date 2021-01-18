@@ -1,12 +1,12 @@
 const sql = require("./db.js");
 
-const TriviaQuestion = function (triviaQuestion) {
-  this.question = triviaQuestion.question;
-  this.correctAnswer = triviaQuestion.correctAnswer;
-  this.options = triviaQuestion.answers;
+const QuizQuestion = function (entity) {
+  this.question = entity.question;
+  this.correctAnswer = entity.correctAnswer;
+  this.options = entity.answers;
 };
 
-TriviaQuestion.mapRows = (rows) => {
+QuizQuestion.mapRows = (rows) => {
   const questions = [];
   for (let row of rows) {
     questions.push({
@@ -19,7 +19,7 @@ TriviaQuestion.mapRows = (rows) => {
   return questions;
 }
 
-TriviaQuestion.getAll = (setId, result) => {
+QuizQuestion.getAll = (setId, result) => {
   sql.query(`select id, question, correct_answer, answers from questions
     where setid = ${setId}
     order by rand()`, (err, res) => {
@@ -28,11 +28,11 @@ TriviaQuestion.getAll = (setId, result) => {
       result(null, err);
       return;
     }
-    result(null, TriviaQuestion.mapRows(res));
+    result(null, QuizQuestion.mapRows(res));
   });
 };
 
-TriviaQuestion.getRandom = (setId, limit, result) => {
+QuizQuestion.getRandom = (setId, limit, result) => {
   sql.query(`select id, question, correct_answer, answers from questions
     where setid = ${setId}
     order by rand()
@@ -44,11 +44,11 @@ TriviaQuestion.getRandom = (setId, limit, result) => {
       return;
     }
 
-    result(null, TriviaQuestion.mapRows(res));
+    result(null, QuizQuestion.mapRows(res));
   });
 };
 
-TriviaQuestion.getRandomSequence = (setId, result) => {
+QuizQuestion.getRandomSequence = (setId, result) => {
   sql.query(`select id from questions where setid = ${setId} order by rand()`, (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -59,7 +59,7 @@ TriviaQuestion.getRandomSequence = (setId, result) => {
   });
 };
 
-TriviaQuestion.getById = (id, result) => {
+QuizQuestion.getById = (id, result) => {
   sql.query(`select id, question, correct_answer, answers
     from questions
     where id = ${id}`, (err, res) => {
@@ -70,8 +70,8 @@ TriviaQuestion.getById = (id, result) => {
       return;
     }
 
-    result(null, TriviaQuestion.mapRows(res));
+    result(null, QuizQuestion.mapRows(res));
   });
 };
 
-module.exports = TriviaQuestion;
+module.exports = QuizQuestion;

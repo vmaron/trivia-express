@@ -1,18 +1,24 @@
 .sidebar {
   font-weight: 600;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 .count {
-  padding: 5px 0 5px 0;
   justify-content: space-between;
   align-items: center;
   display: flex;
   font-size: 0.9rem;
+  margin: 4px;
 }
 
 @media (min-width: 768px) {
   .count {
-    padding: 15px 0 15px 0;
     font-size: 1rem;
+  }
+
+  .sidebar {
+    flex-direction: column;
+    justify-content: center;
   }
 }

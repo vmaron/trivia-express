@@ -1,11 +1,11 @@
-const TriviaQuestion = require("../models/question.model");
+const QuizQuestion = require("../models/question.model");
 
 exports.findAll = (req, res) => {
   const { id } = req.params;
   if (id == null || isNaN(id)) {
     return res.status(400).send({ error: `${id} is not a valid questions set id.`, status: 400 });
   }
-  TriviaQuestion.getAll(id,(err, data) => {
+  QuizQuestion.getAll(id,(err, data) => {
     if (err)
       res.status(500).send({
         message:
@@ -25,7 +25,7 @@ exports.getRandom = (req, res) => {
   const verifiedLimit = (limit != null && !isNaN(limit)
     && limit <= 10 && limit >= 1) ? limit : 1;
 
-  TriviaQuestion.getRandom(id, verifiedLimit, (err, data) => {
+  QuizQuestion.getRandom(id, verifiedLimit, (err, data) => {
     if (err)
       res.status(500).send({
         message:
@@ -40,7 +40,7 @@ exports.getRandomSequence = (req, res) => {
   if (id == null || isNaN(id)) {
     return res.status(400).send({ error: `${id} is not a valid questions set id.`, status: 400 });
   }
-  TriviaQuestion.getRandomSequence(id,(err, data) => {
+  QuizQuestion.getRandomSequence(id,(err, data) => {
     if (err)
       res.status(500).send({
         message:
@@ -56,7 +56,7 @@ exports.getById = (req, res) => {
     return res.status(400).send({ error: `${id} is not a valid id.`, status: 400 });
   }
 
-  TriviaQuestion.getById(id, (err, data) => {
+  QuizQuestion.getById(id, (err, data) => {
     if (err)
       res.status(500).send({
         message:

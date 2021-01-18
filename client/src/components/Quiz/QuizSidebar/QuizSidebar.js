@@ -9,7 +9,7 @@ import {Box, Flex} from "rebass";
 import classes from './QuizSidebar.module.css';
 
 const QuizSidebar = (props) => (
-  <Flex flexDirection='column' className={classes.sidebar}>
+  <Flex className={classes.sidebar}>
     <div className={classes.count}>
       <div> Remaining</div>
       <Box
@@ -18,6 +18,7 @@ const QuizSidebar = (props) => (
           bg: 'highlight',
           px: 2,
           py: 1,
+          margin: 2,
           borderRadius: 9999,
         }}>
         {props.totalRemaining}
@@ -32,6 +33,7 @@ const QuizSidebar = (props) => (
           bg: 'highlight',
           px: 2,
           py: 1,
+          margin: 2,
           borderRadius: 9999,
         }}>
         {props.totalCorrect}
@@ -46,6 +48,7 @@ const QuizSidebar = (props) => (
           bg: 'highlight',
           px: 2,
           py: 1,
+          margin: 2,
           borderRadius: 9999,
         }}>
         {props.totalIncorrect}

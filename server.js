@@ -26,6 +26,7 @@ app.get('/api/customers', (req, res) => {
 });
 
 require("./routes/question.routes")(app);
+require("./routes/quiz.routes")(app);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => `Server running on port ${PORT}`);
