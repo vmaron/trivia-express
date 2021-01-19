@@ -11,6 +11,7 @@ library.add(faDumbbell, faFont, faFileAlt, faDice, faSpinner);
 
 class FlashCards extends Component {
   static propTypes = {
+    quizId: PropTypes.number.isRequired,
     getNewQuiz: PropTypes.func.isRequired,
     currentQuestion: PropTypes.object,
     questions: PropTypes.array.isRequired
@@ -30,8 +31,7 @@ class FlashCards extends Component {
   }
 
   componentWillMount() {
-    if (this.props.questions.length === 0)
-      this.props.getNewQuiz();
+    this.props.getNewQuiz(this.props.quizId);
   }
 
   notReady = () => {
@@ -66,7 +66,7 @@ const mapStateToProps = (state) => ({
 })
 
 const dispatchToProps = (dispatch) => ({
-  getNewQuiz: () => dispatch(getNewQuiz(1))
+  getNewQuiz: (id) => dispatch(getNewQuiz(id))
 })
 
 export default connect(mapStateToProps, dispatchToProps)(FlashCards);

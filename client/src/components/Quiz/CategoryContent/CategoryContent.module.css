@@ -1,0 +1,17 @@
+
+a.clickable {
+  cursor: pointer;
+  border-radius: 0.25em;
+  padding: 0.15em 0.5em;
+  color: rgb(76, 86, 106);
+  font-weight: 600;
+  transition: background-color 100ms ease-in-out 0s;
+}
+
+a.clickable:hover {
+  background-color: #ECEFF4;
+}
+
+.clickableItem {
+  padding: 0.4em 0.1em;
+}

@@ -1,19 +1,25 @@
 import React, {useEffect} from 'react';
 import {connect} from "react-redux";
-import {Link as RebassLink} from "rebass";
-import {Link as RouterLink} from "react-router-dom";
+import {Link} from "rebass";
+import {useHistory} from "react-router-dom";
+import classes from './CategoryContent.module.css';
 import {getCategoryContent} from "../../../store/actions/category";
 import {getCategoriesSelector} from "../../../store/selectors/category";
 
 const CategoryContent = ({categories, loadCategoryContent = f => f}) => {
+  let history = useHistory();
   useEffect(() => {
     loadCategoryContent();
   }, [loadCategoryContent]);
 
+  const redirect = id => {
+    history.replace(`quizzes/${id}`);
+  };
+
   return (<>
     {categories.map(c => {
-      return <div key={c.id}>
-        <RebassLink variant='nav' as={RouterLink} to={`quizzes/${c.id}`}>{c.name}</RebassLink>
+      return <div key={c.id} className={classes.clickableItem}>
+        <Link className={classes.clickable} onClick={() => redirect(c.id)}>{c.name}</Link>
       </div>
     })}
   </>);

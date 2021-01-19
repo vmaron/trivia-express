@@ -48,8 +48,8 @@ QuizQuestion.getRandom = (setId, limit, result) => {
   });
 };
 
-QuizQuestion.getRandomSequence = (setId, result) => {
-  sql.query(`select id from questions where setid = ${setId} order by rand()`, (err, res) => {
+QuizQuestion.getSequence = (setId, result) => {
+  sql.query(`select id from questions where setid = ${setId}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
