@@ -84,11 +84,11 @@ class FlashCard extends Component {
     return (
       <div className={classes.flashcardWithButton}>
         <div className={classes.cardHolder}>
-          {this.props.enableFlip && (<Flex justifyContent='flex-end'>
-            <div className={classes.peek}>
-              <FontAwesomeIcon icon="eye" size='2x' color='var(--theme-ui-colors-primary,hsl(10,80%,50%))' onClick={e => this.flip(e)}/>
+          {this.props.enableFlip && (
+            <div className={classes.peek} title="Peek at answer">
+              <FontAwesomeIcon icon="eye" onClick={e => this.flip(e)} size='2x' color='var(--theme-ui-colors-primary,hsl(10,80%,50%))' />
             </div>
-          </Flex>)}
+          )}
           <div onClick={this.flipBack} className={`${classes.card} ${flipClass}`}>
             <MultiCard  {...newCardProps} />
           </div>
