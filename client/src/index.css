@@ -24,3 +24,22 @@ html {
 .flip, .tempFlip {
   transform: rotateY(-180deg);
 }
+
+
+.paperSheet {
+  background-color: rgb(255, 255, 255);
+  overflow: hidden;
+  width: 100%;
+  margin: 0px auto;
+  padding: 0px 1em;
+  border-radius: 8px;
+  box-shadow: rgba(184, 194, 215, 0.25) 0px 4px 6px, rgba(184, 194, 215, 0.1) 0px 5px 7px;
+  transition: box-shadow 400ms ease-in-out 0s, background-color 400ms ease-in-out 0s;
+}
+
+@media (min-width: 30em) {
+  .paperSheet {
+    max-width: 95%;
+    padding: 2em 4em;
+  }
+}

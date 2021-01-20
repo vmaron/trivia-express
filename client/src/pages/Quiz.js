@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import Layout from "../layouts/Layout";
+import TripleColumnsLayout from "../layouts/TripleColumnsLayout/TripleColumnsLayout";
 import FlashCards from "../components/Quiz/FlashCards/FlashCards";
 import QuizSidebar from "../components/Quiz/QuizSidebar/QuizSidebar";
 import GoogleAds from "../components/Advertising/GoogleAds";
@@ -15,7 +15,7 @@ const Quiz = () => {
 
   return (
     <>
-      {quizId > 0 && (<Layout
+      {quizId > 0 && (<TripleColumnsLayout
         left={<QuizSidebar/>}
         center={<FlashCards quizId={quizId}/>}
         right={<GoogleAds/>}

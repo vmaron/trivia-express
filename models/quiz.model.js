@@ -29,4 +29,16 @@ Quiz.getAll = (result) => {
   });
 };
 
+Quiz.getQuestions = (quizId, result) => {
+  sql.query(`select id, question from questions where setid = ${quizId}`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+    result(null, res);
+  });
+};
+
+
 module.exports = Quiz;

@@ -1,3 +1,17 @@
+.heading {
+  text-align: center;
+}
+
+ul.list {
+  padding: 0;
+  list-style: none;
+}
+
+li.listItem {
+  padding: 0.4em 0.1em;
+  font-size: 1.2rem;
+  line-height: 2rem;
+}
 
 a.clickable {
   cursor: pointer;
@@ -9,9 +23,5 @@ a.clickable {
 }
 
 a.clickable:hover {
-  background-color: #ECEFF4;
-}
-
-.clickableItem {
-  padding: 0.4em 0.1em;
+  background-color: rgb(236, 239, 244);
 }

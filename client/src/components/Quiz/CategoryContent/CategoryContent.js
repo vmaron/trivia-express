@@ -6,6 +6,7 @@ import classes from './CategoryContent.module.css';
 import {getCategoryContent} from "../../../store/actions/category";
 import {getCategoriesSelector} from "../../../store/selectors/category";
 
+
 const CategoryContent = ({categories, loadCategoryContent = f => f}) => {
   let history = useHistory();
   useEffect(() => {
@@ -16,13 +17,20 @@ const CategoryContent = ({categories, loadCategoryContent = f => f}) => {
     history.replace(`quizzes/${id}`);
   };
 
-  return (<>
-    {categories.map(c => {
-      return <div key={c.id} className={classes.clickableItem}>
-        <Link className={classes.clickable} onClick={() => redirect(c.id)}>{c.name}</Link>
+  return (
+    <div>
+      <h2 className={classes.heading}>General Knowledge</h2>
+      <div className="paperSheet">
+        <ul className={classes.list}>
+          {categories.map(c =>
+            <li className={classes.listItem} key={c.id}>
+              <Link className={classes.clickable} onClick={() => redirect(c.id)}>{c.name}</Link>
+            </li>
+          )}
+        </ul>
       </div>
-    })}
-  </>);
+    </div>
+  );
 }
 
 const mapStateToProps = state => ({

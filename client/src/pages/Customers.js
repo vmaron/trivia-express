@@ -1,9 +1,9 @@
 import React from 'react';
-import Layout from "../layouts/Layout";
+import TripleColumnsLayout from "../layouts/TripleColumnsLayout/TripleColumnsLayout";
 import CustomersList from "../components/CustomersList/CustomersList";
 
 const Customers = () => (
-  <Layout
+  <TripleColumnsLayout
     center={<CustomersList/>}
   />
 );
