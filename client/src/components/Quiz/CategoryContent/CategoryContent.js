@@ -14,7 +14,7 @@ const CategoryContent = ({categories, loadCategoryContent = f => f}) => {
   }, [loadCategoryContent]);
 
   const redirect = id => {
-    history.replace(`quizzes/${id}`);
+    history.replace(`review/questions/${id}`);
   };
 
   return (
