@@ -29,15 +29,19 @@ Quiz.getAll = (result) => {
   });
 };
 
-Quiz.getQuestions = (quizId, result) => {
-  sql.query(`select id, question from questions where setid = ${quizId}`, (err, res) => {
-    if (err) {
-      console.log("error: ", err);
-      result(null, err);
-      return;
-    }
-    result(null, res);
-  });
+Quiz.getQuestions = async (quizId) => {
+  try {
+    const quiz = await sql.query(`select id, name, is_public, created_by, created_date
+                                  from questions_set
+                                  where id = ${quizId}`);
+
+    const questions = await sql.query(`select id, question from questions 
+                                       where setid = ${quizId}`);
+    return {...quiz[0], questions};
+  } catch (err) {
+    console.log("error: ", err);
+    return null;
+  }
 };
 
 

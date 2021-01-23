@@ -6,7 +6,7 @@ import QuizQuestions from "../components/Quiz/QuizQuestions/QuizQuestions";
 class ReviewQuestions extends React.Component {
 
   state = {
-    questions: []
+    questions: [], quizName: '', quizId: this.props.match.params.quizId
   }
 
   async componentDidMount() {
@@ -15,7 +15,8 @@ class ReviewQuestions extends React.Component {
     const resp = await axios.get(url)
     this.setState({
       quizId: quizId,
-      questions: resp.data
+      quizName: resp.data.name,
+      questions: resp.data.questions
     })
   }
 
@@ -24,6 +25,7 @@ class ReviewQuestions extends React.Component {
       <TripleColumnsLayout
         center={<QuizQuestions
           questions={this.state.questions}
+          quizName={this.state.quizName}
           quizId={this.state.quizId}/>}
       />
     );

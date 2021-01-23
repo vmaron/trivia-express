@@ -28,6 +28,8 @@ const Nav = styled.div`
     a {
       padding: 10px 0;
       font-size: 20px;
+      position: relative;
+      top: -50px;
     }
   }
 `;

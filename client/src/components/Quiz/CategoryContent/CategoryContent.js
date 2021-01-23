@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {connect} from "react-redux";
-import {Link} from "rebass";
+import {Link, Text} from "rebass";
 import {useHistory} from "react-router-dom";
 import classes from './CategoryContent.module.css';
 import {getCategoryContent} from "../../../store/actions/category";
@@ -19,7 +19,13 @@ const CategoryContent = ({categories, loadCategoryContent = f => f}) => {
 
   return (
     <div>
-      <h2 className={classes.heading}>General Knowledge</h2>
+      <div className={classes.heading}>
+        <Text
+          fontSize={[ 3, 4, 5 ]}
+          fontWeight='bold'>
+          General Knowledge
+        </Text>
+      </div>
       <div className="paperSheet">
         <ul className={classes.list}>
           {categories.map(c =>
