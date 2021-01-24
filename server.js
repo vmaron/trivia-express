@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require("path");
+const handleErrors = require('./middleware/handleErrors');
 require('dotenv').config();
 const app = express();
 
@@ -27,6 +28,9 @@ app.get('/api/customers', (req, res) => {
 
 require("./routes/question.routes")(app);
 require("./routes/quiz.routes")(app);
+app.use(handleErrors);
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => `Server running on port ${PORT}`);
+app.listen(PORT, () =>
+  console.log(`Server running on port ${PORT}`)
+);

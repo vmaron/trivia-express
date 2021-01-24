@@ -1,81 +1,55 @@
 const sql = require("./db.js");
 
-const QuizQuestion = function (entity) {
-  this.question = entity.question;
-  this.correctAnswer = entity.correctAnswer;
-  this.options = entity.answers;
-};
-
-QuizQuestion.mapRows = (rows) => {
-  const questions = [];
-  for (let row of rows) {
-    questions.push({
-      id: row.id,
-      question: row.question,
-      correctAnswer: row.correct_answer,
-      options: JSON.parse(row.answers)
-    })
-  }
-  return questions;
+const mapRows = (rows) => {
+  return rows.map(x => ({
+    id: x.id,
+    question: x.question,
+    correctAnswer: x.correct_answer,
+    options: JSON.parse(x.answers)
+  }));
 }
 
-QuizQuestion.getAll = (setId, result) => {
-  sql.query(`select id, question, correct_answer, answers from questions
-    where setid = ${setId}
-    order by rand()`, (err, res) => {
-    if (err) {
-      console.log("error: ", err);
-      result(null, err);
-      return;
-    }
-    result(null, QuizQuestion.mapRows(res));
-  });
+const getAll = async (quizId) => {
+  const result = await sql.poolQuery(
+    `select id, question, correct_answer, answers
+     from questions
+     where setid = ?
+     order by rand()`, [quizId]);
+  return mapRows(result);
 };
 
-QuizQuestion.getRandom = (setId, limit, result) => {
-  sql.query(`select id, question, correct_answer, answers from questions
-    where setid = ${setId}
-    order by rand()
-    limit ${limit}`, (err, res) => {
-
-    if (err) {
-      console.log("error: ", err);
-      result(null, err);
-      return;
-    }
-
-    result(null, QuizQuestion.mapRows(res));
-  });
+const getRandom = async (quizId, limit) => {
+  const result = await sql.poolQuery(
+    `select id, question, correct_answer, answers
+     from questions
+     where setid = ?
+     order by rand() limit ?`, [quizId, parseInt(limit)]);
+  return mapRows(result);
 };
 
-QuizQuestion.getSequence = async (quizId) => {
-  try {
-    const quiz = await sql.query(`select id, name, is_public, created_by, created_date
-                                  from questions_set
-                                  where id = ${quizId}`);
+const getSequence = async (quizId) => {
+  const quiz = await sql.poolQuery(`select id, name, is_public, created_by, created_date
+                                    from questions_set
+                                    where id = ?`, [quizId]);
 
-    const sequence = await sql.query(`select id from questions 
-                                       where setid = ${quizId}`);
-    return {...quiz[0], sequence};
-  } catch (err) {
-    console.log("error: ", err);
-    return null;
-  }
+  const sequence = await sql.poolQuery(`select id
+                                        from questions
+                                        where setid = ?`, [quizId]);
+  return {...quiz[0], sequence};
 };
 
-QuizQuestion.getById = (id, result) => {
-  sql.query(`select id, question, correct_answer, answers
-    from questions
-    where id = ${id}`, (err, res) => {
-
-    if (err) {
-      console.log("error: ", err);
-      result(null, err);
-      return;
-    }
-
-    result(null, QuizQuestion.mapRows(res));
-  });
+const getById = async (questionId) => {
+  const result = await sql.poolQuery(`select id, question, correct_answer, answers
+                                      from questions
+                                      where id = ?`, [questionId]);
+  return mapRows(result);
 };
 
-module.exports = QuizQuestion;
+
+module.exports = {
+  getAll,
+  getRandom,
+  getSequence,
+  getById
+};
+
