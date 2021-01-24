@@ -16,7 +16,7 @@
 .flashcardWithButton {
   align-self: center;
   margin: 0 15px 0 15px;
-  width: 100%;
+  width: 94%;
   max-width: 600px;
   min-width: 300px;
 }
@@ -31,6 +31,7 @@
   flex: 0.5;
   flex-direction: column;
   align-items: flex-end;
+  text-align: right;
 }
 
 .clickable {

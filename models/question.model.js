@@ -48,15 +48,19 @@ QuizQuestion.getRandom = (setId, limit, result) => {
   });
 };
 
-QuizQuestion.getSequence = (setId, result) => {
-  sql.query(`select id from questions where setid = ${setId}`, (err, res) => {
-    if (err) {
-      console.log("error: ", err);
-      result(null, err);
-      return;
-    }
-    result(null, res);
-  });
+QuizQuestion.getSequence = async (quizId) => {
+  try {
+    const quiz = await sql.query(`select id, name, is_public, created_by, created_date
+                                  from questions_set
+                                  where id = ${quizId}`);
+
+    const sequence = await sql.query(`select id from questions 
+                                       where setid = ${quizId}`);
+    return {...quiz[0], sequence};
+  } catch (err) {
+    console.log("error: ", err);
+    return null;
+  }
 };
 
 QuizQuestion.getById = (id, result) => {

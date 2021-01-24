@@ -27,13 +27,15 @@ const CategoryContent = ({categories, loadCategoryContent = f => f}) => {
         </Text>
       </div>
       <div className="paperSheet">
-        <ul className={classes.list}>
-          {categories.map(c =>
-            <li className={classes.listItem} key={c.id}>
-              <Link className={classes.clickable} onClick={() => redirect(c.id)}>{c.name}</Link>
-            </li>
-          )}
-        </ul>
+        <div className={classes.container}>
+          <div className={classes.gridRow}>
+            {categories.map(c =>
+              <div className={classes.gridItem} key={c.id}>
+                <Link className={classes.clickable} onClick={() => redirect(c.id)}>{c.name}</Link>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );

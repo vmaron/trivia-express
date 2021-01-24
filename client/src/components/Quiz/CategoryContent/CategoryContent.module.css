@@ -3,20 +3,47 @@
   margin-bottom: 2rem;
 }
 
-ul.list {
-  padding: 0;
-  list-style: none;
-}
-
-li.listItem {
-  padding: 0.4em 0.1em;
-  font-size: 1.2rem;
+.container {
+  max-width: 1335px;
+  margin: 0 auto;
   text-align: center;
 }
 
-@media (min-width: 768px) {
-  li.listItem {
-   text-align: left;
+.gridRow {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+
+.gridItem {
+  flex-basis: 20%;
+  -ms-flex: auto;
+  position: relative;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1333px) {
+  .gridItem {
+    flex-basis: 33.33%;
+  }
+}
+
+@media (max-width: 1073px) {
+  .gridItem {
+    flex-basis: 33.33%;
+  }
+}
+
+@media (max-width: 815px) {
+  .gridItem {
+    flex-basis: 50%;
+  }
+}
+
+@media (max-width: 555px) {
+  .gridItem {
+    flex-basis: 100%;
   }
 }
 

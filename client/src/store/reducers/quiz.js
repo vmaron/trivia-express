@@ -2,7 +2,9 @@ import {INIT_QUIZ, NEXT_QUESTION, PREV_QUESTION, RESET_QUIZ, SUBMIT_QUESTION} fr
 
 const initialState = {
   questions: [],
-  currentQuestion: null
+  currentQuestion: null,
+  id: null,
+  name: ''
 };
 
 const quizReducer = (state = initialState, action) => {
@@ -28,11 +30,13 @@ const quizReducer = (state = initialState, action) => {
         } : q)
       };
     case INIT_QUIZ:
-      if (action.payload && action.payload.length)
+      if (action.payload && action.payload.sequence && action.payload.sequence.length)
         return {
           ...state,
-          questions: action.payload.map((x, index) => ({...x, index})),
-          currentQuestion: {...action.payload[0], index: 0, correct: undefined, incorrect: undefined}
+          id: action.payload.id,
+          name: action.payload.name,
+          questions: action.payload.sequence.map((x, index) => ({...x, index})),
+          currentQuestion: {...action.payload.sequence[0], index: 0, correct: undefined, incorrect: undefined}
         };
       else return {...initialState}
     case RESET_QUIZ:

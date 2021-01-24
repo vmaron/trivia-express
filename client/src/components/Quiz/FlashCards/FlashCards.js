@@ -6,6 +6,7 @@ import {library} from '@fortawesome/fontawesome-svg-core';
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import classes from "./FlashCards.module.css";
+import {Text} from "rebass";
 
 library.add(faDumbbell, faFont, faFileAlt, faDice, faSpinner);
 
@@ -13,6 +14,7 @@ class FlashCards extends Component {
   static propTypes = {
     quizId: PropTypes.number.isRequired,
     getNewQuiz: PropTypes.func.isRequired,
+    quizName: PropTypes.string.isRequired,
     currentQuestion: PropTypes.object,
     questions: PropTypes.array.isRequired
   }
@@ -52,6 +54,12 @@ class FlashCards extends Component {
 
     return (
       <div className={classes.container}>
+        <Text
+          style={{marginBottom: '2rem'}}
+          fontSize={[ 3, 4 ]}
+          fontWeight='bold'>
+          General Knowledge - {this.props.quizName}
+        </Text>
         {this.props.currentQuestion && (
           <FlashCard {...flashCardProps} nowReady={this.nowReady} notReady={this.notReady} enableFlip={true}/>
         )}
@@ -61,6 +69,7 @@ class FlashCards extends Component {
 }
 
 const mapStateToProps = (state) => ({
+  quizName: state.quiz.name,
   currentQuestion: state.quiz.currentQuestion,
   questions: state.quiz.questions
 })

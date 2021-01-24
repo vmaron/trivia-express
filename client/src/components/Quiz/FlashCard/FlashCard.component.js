@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import MultiCard from '../MultiCard/MultiCard.component';
 import axios from 'axios';
 import classes from './FlashCard.module.css';
-import Spinner from "../../Common/Spinner/Spinner";
-import {Button, Flex} from "rebass";
+import {Flex, Link} from "rebass";
 import {connect} from "react-redux";
 import {NEXT_QUESTION, PREV_QUESTION} from "../../../store/actions/constants";
 import PropTypes from "prop-types";
@@ -77,30 +76,29 @@ class FlashCard extends Component {
     const {flashCardDataLoaded} = this.props;
     const newCardProps = {questionData};
 
-    if (!flashCardDataLoaded) {
-      return (<Spinner/>)
-    }
-
     return (
       <div className={classes.flashcardWithButton}>
         <div className={classes.cardHolder}>
           {this.props.enableFlip && (
             <div className={classes.peek} title="Peek at answer">
-              <FontAwesomeIcon icon="eye" onClick={e => this.flip(e)} size='2x' color='var(--theme-ui-colors-primary,hsl(10,80%,50%))' />
+              <FontAwesomeIcon icon="eye" onClick={e => this.flip(e)} size='2x'
+                               color='var(--theme-ui-colors-primary,hsl(10,80%,50%))'/>
             </div>
           )}
           <div onClick={this.flipBack} className={`${classes.card} ${flipClass}`}>
-            <MultiCard  {...newCardProps} />
+            {flashCardDataLoaded && (<MultiCard  {...newCardProps} />)}
           </div>
         </div>
         <Flex style={{marginTop: '30px'}}>
           <div className={classes.previous}>
-            <Button onClick={this.prevCard} variant='primary' className={classes.clickable}>
-              <FontAwesomeIcon icon="arrow-left"/> Previous</Button>
+            <Link onClick={this.prevCard} variant='nav' className={classes.clickable}>
+              <FontAwesomeIcon icon="arrow-left"/> Previous
+            </Link>
           </div>
           <div className={classes.next}>
-            <Button onClick={this.nextCard} variant='primary' className={classes.clickable}>
-              Next <FontAwesomeIcon icon="arrow-right"/></Button>
+            <Link onClick={this.nextCard} variant='nav' className={classes.clickable}>
+              Next <FontAwesomeIcon icon="arrow-right"/>
+            </Link>
           </div>
         </Flex>
       </div>
