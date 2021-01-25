@@ -1,6 +1,7 @@
 const mysql = require("mysql");
 const dbConfig = require("../config/db.config.js");
 const util = require("util");
+const logger = require('log4js').getLogger();
 
 const pool = mysql.createPool({
   connectionLimit: 10,
@@ -35,7 +36,7 @@ pool.poolQuery = async (sql, paramsArray) => {
   try {
     return await pool.query(sql, paramsArray);
   } catch (error) {
-    console.log(`${error.message}`);
+    logger.error(error.message);
   }
   return undefined;
 };
