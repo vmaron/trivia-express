@@ -1,0 +1,48 @@
+.cardHolder {
+  perspective: 1200px;
+}
+
+.card {
+  height: 350px;
+  margin: 10px 0 10px;
+  box-shadow: rgba(184, 194, 215, 0.35) 0px 6px 9px 0px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 8px;
+  transform-style: preserve-3d;
+  transition: 1s all;
+  cursor: pointer;
+}
+
+.flashcardWithButton {
+  align-self: center;
+  margin: 0 15px 0 15px;
+  width: 94%;
+  max-width: 600px;
+  min-width: 300px;
+}
+
+.previous {
+  display: flex;
+  flex: 0.5;
+}
+
+.next {
+  display: flex;
+  flex: 0.5;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.clickable {
+  cursor: pointer;
+  width: 125px;
+}
+
+.peek {
+  margin: 10px 15px 10px;
+  cursor: pointer;
+  position: absolute;
+  z-index: 2;
+  right: 0;
+}

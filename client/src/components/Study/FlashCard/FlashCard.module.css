@@ -1,0 +1,25 @@
+.cardBack, .cardFront {
+  position: absolute;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.cardBackQuestion {
+  font-size: 1.5rem;
+  margin-left: 25px;
+  margin-right: 25px;
+  text-align: left;
+}
+
+.cardFront {
+  transform: rotateY(180deg);
+}
+
+

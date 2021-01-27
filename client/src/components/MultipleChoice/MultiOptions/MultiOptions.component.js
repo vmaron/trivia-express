@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react';
-import classes from "./MultiCard.module.css";
+import classes from "./MultiOptions.module.css";
 import {SUBMIT_QUESTION} from "../../../store/actions/constants";
 import {connect} from "react-redux";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -8,7 +8,7 @@ import {library} from '@fortawesome/fontawesome-svg-core'
 
 library.add(faCheck);
 
-class MultiCard extends React.Component {
+class MultiOptions extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -71,4 +71,4 @@ const dispatchToProps = (dispatch) => ({
   submitQuestion: (payload) => dispatch({type: SUBMIT_QUESTION, payload})
 })
 
-export default connect(mapStateToProps, dispatchToProps)(MultiCard);
+export default connect(mapStateToProps, dispatchToProps)(MultiOptions);

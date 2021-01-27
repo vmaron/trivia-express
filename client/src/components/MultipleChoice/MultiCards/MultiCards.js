@@ -1,16 +1,16 @@
 import React, {Component} from 'react';
-import FlashCard from "../FlashCard/FlashCard.component";
 import {faDice, faDumbbell, faFileAlt, faFont, faSpinner} from '@fortawesome/free-solid-svg-icons';
 import {getNewQuiz} from '../../../store/actions/quiz'
 import {library} from '@fortawesome/fontawesome-svg-core';
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import classes from "./FlashCards.module.css";
+import classes from "./MultiCards.module.css";
 import {Text} from "rebass";
+import MultiCard from "../MultiCard/MultiCard.component";
 
 library.add(faDumbbell, faFont, faFileAlt, faDice, faSpinner);
 
-class FlashCards extends Component {
+class MultiCards extends Component {
   static propTypes = {
     quizId: PropTypes.number.isRequired,
     getNewQuiz: PropTypes.func.isRequired,
@@ -28,7 +28,8 @@ class FlashCards extends Component {
     super(props);
     this.state = {
       cardRequestTime: Date.now(),
-      flashCardDataLoaded: false
+      flashCardDataLoaded: false,
+      enableFlip: false
     }
   }
 
@@ -49,7 +50,7 @@ class FlashCards extends Component {
   }
 
   render() {
-    const {cardRequestTime, flashCardDataLoaded} = this.state;
+    const {cardRequestTime, flashCardDataLoaded, enableFlip} = this.state;
     const flashCardProps = {cardRequestTime, flashCardDataLoaded};
 
     return (
@@ -61,7 +62,7 @@ class FlashCards extends Component {
           General Knowledge - {this.props.quizName}
         </Text>
         {this.props.currentQuestion && (
-          <FlashCard {...flashCardProps} nowReady={this.nowReady} notReady={this.notReady} enableFlip={true}/>
+          <MultiCard {...flashCardProps} nowReady={this.nowReady} notReady={this.notReady} enableFlip={enableFlip}/>
         )}
       </div>
     );
@@ -78,5 +79,5 @@ const dispatchToProps = (dispatch) => ({
   getNewQuiz: (id) => dispatch(getNewQuiz(id))
 })
 
-export default connect(mapStateToProps, dispatchToProps)(FlashCards);
+export default connect(mapStateToProps, dispatchToProps)(MultiCards);
 

@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import TripleColumnsLayout from "../layouts/TripleColumnsLayout/TripleColumnsLayout";
-import FlashCards from "../components/Quiz/FlashCards/FlashCards";
+import FlashCards from "../components/Study/FlashCards/FlashCards";
 import QuizSidebar from "../components/Quiz/QuizSidebar/QuizSidebar";
 import GoogleAds from "../components/Advertising/GoogleAds";
 import {useParams} from "react-router-dom";
 
-const Quiz = () => {
+const FlashCardsLesson = () => {
   let {id} = useParams();
   const [quizId, setQuizId] = useState(0);
   useEffect(() => {
@@ -24,4 +24,4 @@ const Quiz = () => {
   );
 }
 
-export default Quiz;
+export default FlashCardsLesson;

@@ -25,4 +25,4 @@ yarn-error.log*
 .idea
 package-lock.json
 client/build
-/logs/app.log
+logs

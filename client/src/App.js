@@ -25,7 +25,8 @@ const theme = {
   },
 }
 
-const Quiz = lazy(() => import('./pages/Quiz'));
+const FlashCardsLesson = lazy(() => import('./pages/FlashCardsLesson'));
+const MultipleChoiceQuiz = lazy(() => import('./pages/MultipleChoiceQuiz'));
 const Category = lazy(() => import('./pages/Category'));
 const Customers = lazy(() => import('./pages/Customers'));
 const ReviewQuestions = lazy(() => import('./pages/ReviewQuestions'));
@@ -38,7 +39,8 @@ class App extends Component {
           <Router>
             <Suspense fallback={<Spinner/>}>
               <Route exact path='/' component={Category}/>
-              <Route exact path='/quiz/:id' component={Quiz}/>
+              <Route exact path='/multiple-choice-quiz/:id' component={MultipleChoiceQuiz}/>
+              <Route exact path='/flash-cards/:id' component={FlashCardsLesson}/>
               <Route exact path='/review/questions/:quizId' component={ReviewQuestions}/>
               <Route exact path='/redux' component={Customers}/>
             </Suspense>
